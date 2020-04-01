@@ -3,6 +3,8 @@ class Handlers {
     this.intervalFirst = intervalFirst
     this.intervalSecond = intervalSecond
     this.wait = wait
+    this.secondTimerId = null
+    this.thirdTimerId = null
   }
 
   firstHandler () {
@@ -22,17 +24,15 @@ class Handlers {
     setInterval(this.firstHandler, this.intervalFirst)
 
     setTimeout(function run () {
-      let timerId = null
-      clearTimeout(timerId)
+      clearTimeout(it.secondTimerId)
       it.secondHandler()
-      timerId = setTimeout(run, it.intervalSecond)
+      it.secondTimerId = setTimeout(run, it.intervalSecond)
     }, this.intervalSecond)
 
     setTimeout(function () {
-      let timerId = null
-      clearTimeout(timerId)
+      clearTimeout(it.thirdTimerId)
       it.thirdHandler()
-      timerId = setInterval(function () {
+      it.thirdTimerId = setInterval(function () {
         it.thirdHandler()
       }, 60000)
     }, this.wait)
