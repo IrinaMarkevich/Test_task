@@ -9,5 +9,8 @@ if (curSec > second) {
   wait = 60 - curSec + second
 } else { wait = second - curSec }
 
-const handlers = new Handlers(3000, 2000, wait * 1000)
+const firstInterval = 3000
+const secondInterval = 2000
+
+const handlers = new Handlers(firstInterval, secondInterval, wait * 1000)
 handlers.launchHandlers()
