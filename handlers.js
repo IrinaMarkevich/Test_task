@@ -1,4 +1,3 @@
-
 class Handlers {
   constructor (intervalFirst, intervalSecond, wait) {
     this.intervalFirst = intervalFirst
@@ -6,35 +5,35 @@ class Handlers {
     this.wait = wait
   }
 
-  first () {
+  firstHandler () {
     console.log('1: "Lorem ipsum...')
   }
 
-  second () {
+  secondHandler () {
     console.log('2: "Lorem ipsum...')
   }
 
-  third () {
+  thirdHandler () {
     console.log('3: "Lorem ipsum...')
   }
 
   launchHandlers () {
     const it = this
-    setInterval(this.first, this.intervalFirst)
+    setInterval(this.firstHandler, this.intervalFirst)
 
     setTimeout(function run () {
       let timerId = null
       clearTimeout(timerId)
-      it.second()
+      it.secondHandler()
       timerId = setTimeout(run, it.intervalSecond)
     }, this.intervalSecond)
 
-    this.timerThirdId = setTimeout(function () {
+    setTimeout(function () {
       let timerId = null
       clearTimeout(timerId)
-      it.third()
+      it.thirdHandler()
       timerId = setInterval(function () {
-        it.third()
+        it.thirdHandler()
       }, 60000)
     }, this.wait)
   }
