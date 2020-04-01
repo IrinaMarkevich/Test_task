@@ -1,8 +1,9 @@
 
 class Handlers {
-  constructor (intervalFirst, intervalSecond) {
+  constructor (intervalFirst, intervalSecond, wait) {
     this.intervalFirst = intervalFirst
     this.intervalSecond = intervalSecond
+    this.wait = wait
   }
 
   first () {
@@ -28,12 +29,14 @@ class Handlers {
       timerId = setTimeout(run, it.intervalSecond)
     }, this.intervalSecond)
 
-    // this.timerThirdId = setTimeout(function () {
-    //   it.third()
-    //   setInterval(function () {
-    //     it.third()
-    //   }, 60000)
-    // }, 8000)
+    this.timerThirdId = setTimeout(function () {
+      let timerId = null
+      clearTimeout(timerId)
+      it.third()
+      timerId = setInterval(function () {
+        it.third()
+      }, 60000)
+    }, this.wait)
   }
 }
 
