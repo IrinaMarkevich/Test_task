@@ -10,4 +10,4 @@ RUN npm install pm2 -g
 
 COPY . .
 
-CMD ["pm2-runtime", "event.js"]
+CMD ["pm2-runtime", "index.js"]
