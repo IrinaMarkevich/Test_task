@@ -3,6 +3,9 @@ class Event {
   constructor (intervalFirst, intervalSecond) {
     this.intervalFirst = intervalFirst
     this.intervalSecond = intervalSecond
+    this.timerFirstId = null
+    this.timerSecondId = null
+    this.timerThirdId = null
   }
 
   first () {
@@ -17,17 +20,22 @@ class Event {
     console.log('3: "Lorem ipsum...')
   }
 
+  clearHandlers () {
+    clearInterval(this.timerFirstId)
+    clearTimeout(this.timerSecondId)
+    clearTimeout(this.timerThirdId)
+  }
+
   launchHandlers () {
     const it = this
-    setInterval(this.first, this.intervalFirst)
+    this.timerFirstId = setInterval(this.first, this.intervalFirst)
 
-    setTimeout(function run () {
+    this.timerSecondId = setTimeout(function run () {
       it.second()
       setTimeout(run, it.intervalSecond)
     }, this.intervalSecond)
 
-    // setTimeout(this.third, 8000)
-    setTimeout(function () {
+    this.timerThirdId = setTimeout(function () {
       it.third()
       setInterval(function () {
         it.third()
